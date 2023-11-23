@@ -1,0 +1,54 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calculator</title>
+  </head>
+  <body></body>
+  <script>
+    let menu;
+    let home = `
+    1. hitung
+    2. history
+    3. exit`;
+    let operand = `
+     + untuk penjumlahan
+     - untuk pengurangan
+     / untuk pembagian
+     * untuk perkalian`;
+
+    let history = "";
+    let input = "input angka";
+    while (menu != 3) {
+      menu = prompt(home);
+      if (menu == 1) {
+        let result = prompt(input);
+        if (isNaN(result)) continue;
+        let menu2 = 0;
+        let tmpHistory = result;
+        while (menu2 != 1) {
+          let operator = prompt(operand);
+
+          let secondNumber = prompt(input);
+          if (operator == "+") result = Number(result) + Number(secondNumber);
+          else if (operator == "-") result -= secondNumber;
+          else if (operator == "/") result /= secondNumber;
+          else if (operator == "*") result *= secondNumber;
+          else continue;
+          if (isNaN(secondNumber)) continue;
+          tmpHistory += ` ${operator} ${secondNumber}`;
+
+          menu2 = prompt(`
+          result = ${result}
+          1. home
+          ketik apapun untuk lanjut hitung`);
+        }
+        history += "\n" + tmpHistory + " = " + result;
+      } else if (menu == 2) alert(history ? history : "belum ada history");
+    }
+    alert("good bye");
+  </script>
+</html>
