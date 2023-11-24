@@ -10,29 +10,29 @@
   <body></body>
   <script>
     let menu;
-    let home = `
+    const home = `
     1. hitung
     2. history
     3. exit`;
-    let operand = `
+    const operand = `
      + untuk penjumlahan
      - untuk pengurangan
      / untuk pembagian
      * untuk perkalian`;
 
     let history = "";
-    let input = "input angka";
+    const input = "input angka";
     while (menu != 3) {
       menu = prompt(home);
       if (menu == 1) {
-        let result = prompt(input);
+        let result = prompt(input); //10
         if (isNaN(result)) continue;
-        let menu2 = 0;
-        let tmpHistory = result;
+        let menu2;
+        let tmpHistory = result; //10
         while (menu2 != 1) {
-          let operator = prompt(operand);
+          let operator = prompt(operand); // +
 
-          let secondNumber = prompt(input);
+          let secondNumber = prompt(input); // 5
           if (operator == "+") result = Number(result) + Number(secondNumber);
           else if (operator == "-") result -= secondNumber;
           else if (operator == "/") result /= secondNumber;
