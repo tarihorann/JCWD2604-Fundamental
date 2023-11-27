@@ -61,4 +61,53 @@ for (let i = classes.length - 1; i >= 0; i--) console.log(classes[i]);
 
 let arr3 = [1, 2, 3];
 console.log(arr3.push(4), "ini hasil returnnya");
+console.log(arr3.push(5));
 console.log(arr3);
+
+// forEach, map, filter, find, reduce
+
+arr3.forEach((value, index, arr) => {
+  console.log(value);
+  console.log(index);
+  console.log(arr);
+});
+
+const wargakonohas = ["naruto", "sakura", "sasuke", "tsunade", "kakashi"];
+
+console.log(
+  wargakonohas.forEach((warga, i) => {
+    console.log(warga, "adalah index ke", i);
+    return warga + i;
+  })
+);
+
+console.log(
+  wargakonohas.map((warga, i) => {
+    console.log(warga);
+    // return "hehehe";
+  })
+);
+
+console.log(
+  wargakonohas.filter((warga) => {
+    if (warga == "naruto" || warga == "sasuke") return warga;
+  })
+);
+console.log(
+  wargakonohas.map((warga) => {
+    if (warga == "naruto" || warga == "sasuke") return warga;
+  })
+);
+
+console.log(
+  wargakonohas.find((warga, i) => {
+    // console.log(warga);
+    // if (warga == "naruto") return "hello";
+    if (warga == "sasuke") return i;
+  })
+);
+
+const numbers = [1, 2, 3, 4];
+console.log(numbers.reduce((sum, current) => sum + current));
+const numbers2 = [1, 2, 4];
+console.log(numbers2.reduce((sum, current) => sum + current));
