@@ -107,19 +107,33 @@ class Order {
   addToCart(product) {
     if (product instanceof Product) this.#cart.push(product);
     else console.log("bukan product");
+  }
+
+  #hitung() {
     this.#total = this.#cart.reduce((sum, curr) => sum + curr.price, 0);
   }
   showCart() {
     return this.#cart;
   }
   getTotal() {
+    this.#hitung();
     return this.#total;
   }
 }
 class Product {
-  constructor(name, price) {
+  constructor(name, price, category) {
     this.name = name;
     this.price = price;
+    this.category = category;
+  }
+}
+
+class Buku extends Product {
+  constructor(name, price, halaman, penulis, penerbit) {
+    super(name, price, "buku");
+    this.halaman = halaman;
+    this.penulis = penulis;
+    this.penerbit = penerbit;
   }
 }
 
@@ -145,3 +159,59 @@ console.log(belanja.getTotal());
 //   console.log(i);
 //   return prev + curr;
 // }, 0);
+
+//getter setter
+class Data {
+  constructor(fname, lname) {
+    this.fname = fname;
+    this.lname = lname;
+  }
+  get fullname() {
+    //read only
+    return this.fname + " " + this.lname;
+  }
+  set fullname(values) {
+    const split = values.split(" "); // "ayam goreng" => ["ayam","goreng"]
+    this.fname = split[0]; // "ayam"
+    this.lname = split[1]; //"goreng"
+  }
+}
+const data = new Data("uding", "ujang");
+data.fullname;
+console.log(data.fullname);
+data.fullname = "ayam goreng";
+console.log(data.fullname);
+console.log(data.fname);
+
+class DB {
+  static #connection = "";
+  static abc = 123;
+
+  static #initializeConnection() {
+    const random = Math.ceil(Math.random() * 100);
+    DB.#connection = `new Database connection ${random}`;
+  }
+
+  hello() {
+    console.log("ini bukan static");
+  }
+
+  static getConnection() {
+    if (!DB.#connection) DB.#initializeConnection();
+
+    return DB.#connection;
+  }
+}
+
+//db.connection = ""
+console.log(DB.getConnection()); //db.connection = " new database connection 56"
+
+console.log(DB.getConnection()); //db.connection = " new database connection 56"
+
+const obj = new DB();
+obj.hello();
+// DB.hello();
+
+// DB.getConnection
+// obj.getConnection()
+// obj.getConnection(); -- static tidak diakses dari instancenya tapi dari classnya
