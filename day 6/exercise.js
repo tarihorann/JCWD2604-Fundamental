@@ -199,7 +199,7 @@ console.log(oddEven(1, 2, 3, 4));
 const generateRandom = (n) => {
   let result = [];
   for (let i = 0; i < n; i++) {
-    const random = Math.ceil(Math.random() * 99);
+    const random = Math.ceil(Math.random() * 99); //1-100
     result.push(random);
   }
   return result;
