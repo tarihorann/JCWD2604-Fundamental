@@ -78,3 +78,73 @@ const calculate2 = (students = []) => {
     },
   };
 };
+
+// Create a program to create transaction
+// Product Class
+// Properties
+// Name
+// Price
+// Transaction Class
+// Properties
+// Total
+// Product
+// All product data
+// Qty
+// Add to cart method → Add product to transaction
+// Show total method → Show total current transaction
+// Checkout method → Finalize transaction, return transaction data
+
+class Product {
+  constructor(name, price) {
+    this.name = name;
+    this.price = price;
+  }
+}
+
+class Transaction {
+  #products = [];
+  #total = 0;
+
+  get cart() {
+    return this.#products;
+  }
+
+  addtoCart(product, qty) {
+    if (product instanceof Product == false)
+      return console.log("produk tidak sesuai");
+    this.#products.push({ ...product, qty });
+    this.#total += product.price * qty;
+  }
+
+  showTotal() {
+    return this.#convertToMoney(this.#total);
+  }
+
+  #convertToMoney(number) {
+    return `Rp.${number.toLocaleString("id-ID")},00`;
+  }
+  checkout(pay = 0) {
+    if (typeof pay !== "number") return console.log("input tidak sesuai");
+    const change = pay - this.#total;
+    if (change < 0)
+      return console.log("uang anda kurang", this.#convertToMoney(change * -1));
+    else {
+      this.#total = 0;
+      this.#products.splice(0, this.#products.length);
+      return console.log(
+        "terimakasih sudah berbelanja, kembalian anda",
+        this.#convertToMoney(change)
+      );
+    }
+  }
+}
+
+const trx = new Transaction();
+trx.addtoCart(new Product("baju", 5000), 3);
+trx.addtoCart(new Product("celana", 10000), 2);
+trx.addtoCart(new Product("sepatu", 20000), 1);
+
+console.log(trx.cart);
+console.log(trx.showTotal());
+trx.checkout(60000);
+console.log(trx.cart);
