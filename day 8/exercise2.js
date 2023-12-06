@@ -106,7 +106,7 @@ class ListUser {
       (val) => val.email.toLowerCase() == email.toLowerCase()
     );
   }
-  get list() {
+  getlist() {
     return this.#users.map(({ email, name }) => {
       return { email, name };
     });
