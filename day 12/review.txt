@@ -1,0 +1,11 @@
+// conditional
+operators 
+== value tanpa tipe data (equal)
+=== value dan tipe data (eq)
+!= value tanpa tipe data (not eq)
+!== value dan tipe data (not equal)
+> lebih dari (greater than)
+< kurang dari (less than)
+>= lebih dari atau sama dengan (greater than or equal to)
+<= kurang dari atau sama dengan (less than or equal to)
+
